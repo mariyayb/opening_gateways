@@ -16,12 +16,22 @@
                         
                         
         <style>
+        html{
+                background-color:DarkTurquoise;
+            }
+        
+        body {
+     /*       position:relative;*/
+            margin:10px;
+        }
+
                         
         div {
                                 padding-top: 25px;
                                 padding-right: 15px;
                                 padding-bottom: 10px;
                                 padding-left: 20px;
+                                background-color:white;
                             }
                 
                             html, body {
@@ -67,16 +77,16 @@
         <p>Tests for COVID-19 antibodies have recently become available. An individual who takes such test will receive a positive or negative result. A positive result indicates that COVID-19 antibodies have been detected and so the individual has been exposed to the virus. A negative test indicates that antibodes have not been detected indicating that the individual has not been exposed to the virus. But it's not that simple. Diagnostic tests, including COVID-19 antibodies tests vary in their reliability. Two important numbers are:  </p>
         
         <ul>
-        <li>The <b>specificity</b> of a diagnostic test is a number that indicates: the chance that an individual who is truly negative will receive a negative test result.</li>
+        <li>The <b>specificity</b> of a diagnostic test is a number that indicates: the proportion of individuals who are truly negative and will receive a negative test result.</li>
         
-        <li>The <b>sensitivity</b> of a diagnostic test is a number that indicates: the chance that an individual who is truly positive will receive a positive test result.</li>
+        <li>The <b>sensitivity</b> of a diagnostic test is a number that indicates: the proportion of individuals who are truly positive and will receive a positive test result.</li>
             
             
         </ul>
         
         
         
-        <p>Ideally, when expressed as percentages, these numbers will be close to 100%.</p>
+        <p>Ideally, when expressed as proportions, these numbers are close to 1. (When expressed as percentages, these numbers will be close to 100%).</p>
         
         <p>You might wonder: to find out the specificity, one has to know who is truly negative, and to find out the sensitivity, one has to know who is truly positive. Then what is the point of testing? The answer is that the numbers that are provided are just <i>estimates</i> (and can be quite good estimates).</p>
         
@@ -102,96 +112,79 @@
         </ul>
         
         From positive test results only, the proportion of individuals who are true negatives but receive a positive result is \(+True-\):
-        \[+True- = \frac{p-p^2SE}{p-p^2SE +(1-p)^2SP}\]
+        \[+True- = \frac{(1-p)\cdot(1-SP)}{(1-p)\cdot(1-SP) +p\cdot SE}\]
         
         From negative test results only, the proportion of individuals who are true positives but receive a negative result is \(-True+\):
-        \[-True+ = \frac{p-p^2SP}{p-p^2SP +(1-p)^2SE}\]
+        \[-True+ = \frac{p\cdot (1-SE)}{p\cdot (1-SE) +(1-p)\cdot SP}\]
         <script>
-        function Random() {
-        var rnd = Math.floor(Math.random() * 21+80);
-        document.getElementById('spe').value = rnd;
-        var rnd = Math.floor(Math.random() * 21+80);
-        document.getElementById('sen').value = rnd;
+        function spec_sens_rand() {
+        var spec = Math.floor(Math.random() * 21+80)/100;
+        document.getElementById('sp').innerHTML = "Specificity = " +spec + "   ("+spec*100+" %)";
+        var sens = Math.floor(Math.random() * 21+80)/100;
+        document.getElementById('sn').innerHTML = "Sensitivity = " +sens+ "   ("+sens*100+" %)";
+        var prop = Math.floor(Math.random() * 101)/100;
+        document.getElementById('p').innerHTML = "Proportion of positive cases in the population being tested = " +prop + "   ("+Math.round(prop*100)+" %)";
+ 
+        var test_pos_true_neg=1000*(1-prop)*(1-spec)/((1-prop)*(1-spec)+sens*prop);
+        document.getElementById('pos_true_neg').innerHTML = "Out of 1,000 people who recieve a positive test result, about " +Math.round(test_pos_true_neg) + " will receive an <b>incorrect result</b>: they are truly negative!";
+        var test_neg_true_pos=1000*prop*(1-sens)/((prop)*(1-sens)+spec*(1-prop));
+        document.getElementById('neg_true_pos').innerHTML = "Out of 1,000 people who recieve a negative test result, about " +Math.round(test_neg_true_pos) + " will receive an <b>incorrect result</b>: they are truly positive!";
+    document.getElementById('result').innerHTML=test_plus_true_neg;
+            
+            return false
         }
         </script>
+
         <form name="false_positive">
-            <input type="button" value="Specificity" onclick="Random();" />
-            <input type="text" id="spe" name="spe" /><br>
+            <input type="button" value="Try an example" onclick="spec_sens_rand();" />
+            <div id='sp'></div>
+            <div id='sn'></div>
+            <div id='p'></div>
+            <div id='pos_true_neg'></div>
+            <div id='neg_true_pos'></div><br>
+            &nbsp;&nbsp;&nbsp;
             <input type="button" value="Sensitivity" onclick="Random();" />
-            <input type="text" id="sen" name="sen" />
-        </form>
-        You enter
+            <input type="text" id="sens" name="sens" />
+            &nbsp;&nbsp;&nbsp;
+        
   
-        \(p\) = <input type="text" id="prop">
-            
+
+        <h3>Questions:</h3>
+        <p>Assume that sensitivity and specificity are constant. Answer the question below and turn in your work. Also include a plot of +True- and -True+ as functions of \(p\).</p>
+        <ol>
+        <li>For what value of \( p \) is +True- maximized?</li>
+        <li>For what  value of \( p \) is +True- minimized?</li>
+        <li>For what  value of \( p \) is -True+ maximized?</li>
+        <li>For what  value of \( p \) is -True+ minimized?</li>
+        </ol>
+        <p>Remember that \(p\) is a proportion and so is a number between 0 and 1.</p>
         </div>
         <div>
         <h2> Accuracy </h2>
-        <p>When does accuracy </p>
+        <p>Overall test accuracy is simply the proportion:
+        
+        \[Accuracy = \frac{\text{correct tests}}{\text{total tests}}.\] Be careful if this is the only number you know.</p>
+        <p>As a function of \(p, SP,\) and \(SE\),
+        \[Accuracy = p\cdot SE + (1-p)\cdot SP\]</p>
+        <h1>Questions:</h1>
+        <ol>
+        <li>Suppose \(p = 0.02\), that is 2% of the population is positive. Suppose the test correectly identifies all negative cases and incorrectly identifies all positive cases. What is the overall accuracy?</li>
+        <li>Suppose \(p = 0.98\), that is 98% of the population is positive. Suppose the test correectly identifies all negative cases and incorrectly identifies all positive cases. What is the overall accuracy?</li>
+        <li>Supose \(SP\) and \(SE\) are both \(0.95\). For what value of \(p\) is the accuracy maximized? For what value of \(p\) is the accuracy minimized?</li>
+        <li>Supose \(SP\) and \(SE\) are unknown constants. For what value of \(p\) is the accuracy maximized? For what value of \(p\) is the accuracy minimized? What do you need to know about \(SP\) and \(SE\) to answer this question?</li>
+        <li>In the presense of antibodies actually leads to immunity from COVID-19, and there is a reliable antibody test, the ideas of allowing people back to work based on their immunity status has been brought up. In practice, diagnostic tests rarely have both specificity and sensitivity equal to 1 (100%). If officials had to choose between two tests for this purpose:
+                <ul>
+                    <li><b>Test A:</b> with \(SP=0.95\) and \(SE=1\).</li>
+                    <li><b>Test B:</b> with \(SP=1\) and \(SE=0.95\).</li>
+                </ul>
+            which test should they choose and why?</li>
+        </ol>
         
         </div>
         
        
-        
-        
-        <div>
-       
-            <div>
-            <p>1. We have one equation and two unknowns (\(𝑀\) and \(𝑘\)). How many equations do we need to solve for \(𝑀\) and \(𝑘\)?</p>
-            
-            <br>
-            <button type="button" onclick="document.getElementById('Activity1Answer1').style.display='block'">Check Answer</button> <br><br></div>
-            <div id="Activity1Answer1" style="display:none">
-            <p><b>Answer:</b> 2 equations are needed to solve a system of equations with 2 unknowns.</p>
-             2. Spend a few minutes thinking how to obtain a second equation for this system. Note that the second equation cannot be a multiple of the first.<br></p>
-            <br>
-            <button type="button" onclick="document.getElementById('Activity1Answer2a').style.display='block'">Check Answer</button> <br><br></div>
-        <div id="Activity1Answer2a" style="display:none">
-            <p><b>Answer:</b> We can differentiate the first equation with respect to \(t\). Do this and write down the second equation.</p>
-            <button type="button" onclick="document.getElementById('Activity1Answer2b').style.display='block'">Check Answer</button> <br><br></div>
-        <div id="Activity1Answer2b" style="display:none">
-            3. A second equation can be obtained by differentiating both sides of equation (1)
-             with respect to \(t\). We now have a system of two equations:
-             \[𝑀⋅𝑥''(𝑡)+𝑘⋅𝑥(𝑡)=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\]
-             \[𝑀⋅𝑥'''(𝑡)+𝑘⋅𝑥'(𝑡)=𝐹'_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\]
-             Recall that we are assuming \(x(t)\) and \(F(t)\) can be measured, so they are known. The unknowns are the parameters, \(M\) and \(k\). Solve this system of equations for \(M\) and \(k\).
-             <br>
-            <button type="button" onclick="document.getElementById('Activity1Answer3').style.display='block'">Check Answer</button> <br><br></div>
-        <div id="Activity1Answer3" style="display:none">
-            <p><b>Answer:</b>
-            \[𝑀=\frac{𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\cdot x'(t) - F'_{external}(t)\cdot x(t)}{x''(t)\cdot x'(t)-x'''(t)\cdot x(t)}\]
-            \[k=\frac{x''(t)\cdot F'_{external}(t) + x'''(t)\cdot F_{external}(t)}{x''(t)\cdot x'(t)-x'''(t)\cdot x(t)}\]</p>
-            <p>This result is remarkable. Why? Right down your answer. Hint: consider the left hand sides and right hand sides.</p>
-            <br>
-            <button type="button" onclick="document.getElementById('Activity1Answer3b').style.display='block'">Check Answer</button> <br><br></div>
-        <div id="Activity1Answer3b" style="display:none">
-            <p><b>Answer:</b> the left hand sides are constant while the right hand sides are functions of time. </p>
-            
-             
-             4. Assume a constant force of 1 Newton is applied to a spring-mass system. Suppose the displacement from equilibrium is given by \(x(t) = \sin{t} + \cos{t} + 1,\) where time is in seconds. Find \(M\) and \(k\) for this spring mass system. Work out the answer and show all of your work.
-             
-             5. Now assume a constant force of 1 Newton si applied to a spring-mass sytem. Suppose the displacement from equibirium is given by \(t^2 + 3*t + 1\), where time is in seconds.
-              Find \(M\) and \(k\) for this spring mass system. You will see that your result cannot be valid. Think about why this happened and write down your thoughts.
-             <br>
-            <button type="button" onclick="document.getElementById('Activity2').style.display='block'">Continue to extension</button> <br><br></div>
-             </div>
-        
-        
-        
-        
-            <div id="Activity2" style="display:none">
-             
-             <h2>Extension: incorporating friction and air resistance</h2>
-             <p>Equation (1) works in an idealized setting where there is not friction (in the case of a horizontal spring) or air resistance (in the case of a vertical spring). If friction or air resistance are present, they are proportional to the velocity of the mass. Recall that velocity is given by \(x'(t)\), the first derivative of displacement. Then the equation becomes:
-             \[𝑀⋅𝑥''(𝑡)+c⋅x'(t)+𝑘⋅𝑥(𝑡)=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\tag{2}\]
-             
-             1. How many equations are needed to solve for the parameters \(M\),\(c\), and \(k\) in a spring mass system with damping?<br>
-             2. Think about how you will come up with two additional equations to solve for the parameters. Write down the three equations.<br>
-             3. Solve this system of equations for \(M\),\(c\), and \(k\).<br>
+       <p></p>
 
-             </div>
-     
-     
         
     </body>
 </html>
