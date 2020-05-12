@@ -126,12 +126,11 @@
         document.getElementById('p').innerHTML = "Proportion of positive cases in the population being tested = " +prop + "   ("+Math.round(prop*100)+" %)";
  
         var test_pos_true_neg=1000*(1-prop)*(1-spec)/((1-prop)*(1-spec)+sens*prop);
-        document.getElementById('pos_true_neg').innerHTML = "Out of 1,000 people who recieve a positive test result, about " +Math.round(test_pos_true_neg) + " will receive an <b>incorrect result</b>: they are truly negative!";
+        document.getElementById('pos_true_neg').innerHTML = "Out of 1,000 people who <b>receive a positive test result</b>, about " +Math.round(test_pos_true_neg) + " will receive an <b>incorrect result</b>: they are truly negative!";
         var test_neg_true_pos=1000*prop*(1-sens)/((prop)*(1-sens)+spec*(1-prop));
-        document.getElementById('neg_true_pos').innerHTML = "Out of 1,000 people who recieve a negative test result, about " +Math.round(test_neg_true_pos) + " will receive an <b>incorrect result</b>: they are truly positive!";
-    document.getElementById('result').innerHTML=test_plus_true_neg;
-            
-            return false
+        document.getElementById('neg_true_pos').innerHTML = "Out of 1,000 people who <b>receive a negative test result</b>, about " +Math.round(test_neg_true_pos) + " will receive an <b>incorrect result</b>: they are truly positive!";
+   
+        return false
         }
         </script>
 
@@ -143,9 +142,7 @@
             <div id='pos_true_neg'></div>
             <div id='neg_true_pos'></div><br>
             &nbsp;&nbsp;&nbsp;
-            <input type="button" value="Sensitivity" onclick="Random();" />
-            <input type="text" id="sens" name="sens" />
-            &nbsp;&nbsp;&nbsp;
+         
         
   
 
