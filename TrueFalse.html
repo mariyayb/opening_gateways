@@ -61,112 +61,81 @@
 
       
         <div>
-        <h1><center>How to use a spring to calculate mass in outer space</center></h1>
+            <h1><center>True or False: How reliable are antibody test results?</center></h1>
         
         
-        <p>Suppose we have a spring that can stretch or compress an object attached to the end. Let \(M\) be the mass of the object, measured in kilograms. Hooke's law states that the force exerted by the spring on this object is proportional to the displacement of the object from equilibrium. Equilibrium here is when the spring is "at rest", neither stretched nor compressed. </p>
+        <p>Tests for COVID-19 antibodies have recently become available. An individual who takes such test will receive a positive or negative result. A positive result indicates that COVID-19 antibodies have been detected and so the individual has been exposed to the virus. A negative test indicates that antibodes have not been detected indicating that the individual has not been exposed to the virus. But it's not that simple. Diagnostic tests, including COVID-19 antibodies tests vary in their reliability. Two important numbers are:  </p>
+        
+        <ul>
+        <li>The <b>specificity</b> of a diagnostic test is a number that indicates: the chance that an individual who is truly negative will receive a negative test result.</li>
+        
+        <li>The <b>sensitivity</b> of a diagnostic test is a number that indicates: the chance that an individual who is truly positive will receive a positive test result.</li>
+            
+            
+        </ul>
         
         
-        <p>The graph below shows the displacement from equilibrium (marked on the horizontal axis) of a mass attached to a horizontal spring. You can move the slider to view the results of compressing and/or stretching the spring.</p>
         
-               <style>
-                   
-                   .rangeslider{
-                       width: 50%;
-                   }
-               
-               .myslider {
-                   -webkit-appearance: none;
-                   background: #b2d8d8  ;
-                   width: 50%;
-                   height: 5px;
-                   opacity: 2;
-               }
-               
-               
-               .myslider::-webkit-slider-thumb {
-                   -webkit-appearance: none;
-                   cursor: pointer;
-                   background: #34495E  ;
-                   width: 5%;
-                   height: 20px;
-               }
-               
-               
-               .myslider:hover {
-                   opacity: 1;
-               }
-               
-                   </style>
+        <p>Ideally, when expressed as percentages, these numbers will be close to 100%.</p>
+        
+        <p>You might wonder: to find out the specificity, one has to know who is truly negative, and to find out the sensitivity, one has to know who is truly positive. Then what is the point of testing? The answer is that the numbers that are provided are just <i>estimates</i> (and can be quite good estimates).</p>
+        
 
-               
-               <div class="rangeslider">
-                   <input type="range" min="1" max="24" value="10" step="1"
-                       class="myslider" id="sliderRange">
-                      <p><span id="value" style="color:white"></span></p>
-               </div>
-               
-               <img src = "static/hookeslaw_10.png" id="img"></img>
-               <script>
-                var rangeslider = document.getElementById("sliderRange");
-                var output = document.getElementById("value");
-                
-                output.innerHTML = rangeslider.value;
-                
-                rangeslider.oninput = function() {
-                output.innerHTML = this.value;
-                
-                var img = document.getElementById("img");
-                img.setAttribute("src", "static/hookeslaw_" + this.value + ".png");
-                }
-                
-                
-                </script>
-        
-        <p>Observe that at equilibrium, the displacement is 0. When the spring is compressed (i.e., the mass is to the left of the equilibrium position), displacement is negative. When the spring is stretched (i.e., the mass is to the right of the equilibrium position), the displacement is positive.</p>
-        
-        
-         <p>Using the method below, once could use a spring to simultaneously determine the mass of an object in outer space and the spring constant. In outer space, it is important for astronauts to know their mass, an indicator of health. While not exactly the method outlined below, astronauts do use a machine that is based on springs to measure their mass in space. See <a href="https://www.airspacemag.com/daily-planet/how-do-astronauts-weigh-themselves-space-180953884/" target="_blank">here for details</a>.  </p>
+        <div>
+        <h2>Reliability of test results</h2>
+        You went in to for the test and your result is ready.
+        <ul>
+        <li> You test positive. How many people who test positive are really <i>negative</i>? These people have received a <b>false positive</b>.
+        <li> You test negative. How many people who test negative are really <i>positive</i>? These people have received a <b>false negative</b>.
+        </ul>
+        <p>To estimate these numbers, it is also necessary to know the <i>proportion of the population being tested</i> with the disease.</p>
         
         </div>
         
         <div>
+        <h2>Reliability calculator</h2>
+        <p>Let the following numbers be expressed as proportions (taking values from 0 to 1):</p>
+        <ul>
+            <li>\(p\) be the proportion of the population that is positive for antibodies.</li>
+            <li>\(SP\) be the specificity of the test.</li>
+            <li>\(SE\) be the sensitivity of the test.</li>
+        </ul>
         
-        <h2>Forces on the mass</h2>
+        From positive test results only, the proportion of individuals who are true negatives but receive a positive result is \(+True-\):
+        \[+True- = \frac{p-p^2SE}{p-p^2SE +(1-p)^2SP}\]
         
-        <p>Let's consider the forces acting on the mass.</p>
-        <h3>Newton's second law of motion</h3>
-        
-        <p>Newton's second law of motion states that the total force acting on an object is equal to the mass of the object times its acceleration:</p>
-    
-        \[F_{total} = 𝑚⋅𝑎\]
-        
-        <h3>Spring force (Hooke's law)</h3>
-        
-        <p>Hooke's law states that the force exerted by the spring is proportional to the displacement of the object from equilibrium. If we denote displacement from equilibrium by \(x\),</p>
-        \[F_{𝑠𝑝𝑟𝑖𝑛𝑔}=𝑘⋅𝑥,\]
-        <p>where \(k\) is a constant. Each individual spring has a single value of \(k\) that depends on multiple factors, including the length of the spring, the number of coils, and the material that the spring is made out of.</p>
-        
-        
-        <p>Let's denote any additional forces on the mass by \(F_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}\). Thus,
-        \[𝐹_{𝑡𝑜𝑡𝑎𝑙}=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}+𝐹_{𝑠𝑝𝑟𝑖𝑛𝑔}=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}+𝑘⋅𝑥=𝑀⋅𝑎\]
-        <p>Subtracting \(𝐹_{𝑠𝑝𝑟𝑖𝑛𝑔}\) from both sides, we have</p>
-        \[𝑀⋅𝑎−𝑘⋅𝑥=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}\]
-        
-        
-        <p>This equation must hold for all times that the mass is attached to the spring. 𝑀 and 𝑘 are constants. Constants in a a system are referred to as parameters of this spring-mass system. \(𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}\), \(𝑎\), and \(𝑥\) are actually functions of time, which may or may not be constant. Recall also that acceleration is the second derivative of displacement. So, the equation of this spring-mass system is
-        \[𝑀⋅𝑥''(𝑡)+𝑘⋅𝑥(𝑡)=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\tag{1}\]
+        From negative test results only, the proportion of individuals who are true positives but receive a negative result is \(-True+\):
+        \[-True+ = \frac{p-p^2SP}{p-p^2SP +(1-p)^2SE}\]
+        <script>
+        function Random() {
+        var rnd = Math.floor(Math.random() * 21+80);
+        document.getElementById('spe').value = rnd;
+        var rnd = Math.floor(Math.random() * 21+80);
+        document.getElementById('sen').value = rnd;
+        }
+        </script>
+        <form name="false_positive">
+            <input type="button" value="Specificity" onclick="Random();" />
+            <input type="text" id="spe" name="spe" /><br>
+            <input type="button" value="Sensitivity" onclick="Random();" />
+            <input type="text" id="sen" name="sen" />
+        </form>
+        You enter
+  
+        \(p\) = <input type="text" id="prop">
+            
+        </div>
+        <div>
+        <h2> Accuracy </h2>
+        <p>When does accuracy </p>
         
         </div>
         
+       
+        
         
         <div>
-        <h2>Activity: solving for the parameters \(𝑀\) and \(𝑘\).</h2>
-        
-        <p><b>Directions:</b> Complete each question and write down your answer on a piece of paper to hand in. Answers to some questions will be provided after you click the "Check Answer" button. You should write down your answers before checking them.</p>
-        
-            <p>How could one determine the values of the parameters 𝑀 and 𝑘 for a given spring?
-            If \(𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\) is known and \(𝑥(𝑡)\) can be measured, we can then solve for \(𝑀\) and \(𝑘\).</p>
+       
             <div>
             <p>1. We have one equation and two unknowns (\(𝑀\) and \(𝑘\)). How many equations do we need to solve for \(𝑀\) and \(𝑘\)?</p>
             
