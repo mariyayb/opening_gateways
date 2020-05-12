@@ -1,0 +1,229 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>How to use a spring to calculate mass in outer space</title>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async
+                    src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+            </script>
+                
+            <link rel="stylesheet"
+                    href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+                    integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+                    crossorigin="anonymous">
+        <link>
+                        
+                        
+        <style>
+                        
+        div {
+                                padding-top: 25px;
+                                padding-right: 15px;
+                                padding-bottom: 10px;
+                                padding-left: 20px;
+                            }
+                
+                            html, body {
+                                height: 100vh;
+                            }
+
+        .rangeslider{
+            width: 30%;
+        }
+        
+        .myslider {
+            -webkit-appearance: none;
+            background: #FCF3CF  ;
+            width: 50%;
+            height: 20px;
+            opacity: 2;
+        }
+        
+        
+        .myslider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            cursor: pointer;
+            background: #34495E  ;
+            width: 5%;
+            height: 20px;
+        }
+        
+        
+        .myslider:hover {
+            opacity: 1;
+        }
+        
+        </style>
+    </head>
+
+    <body>
+
+      
+        <div>
+        <h1><center>How to use a spring to calculate mass in outer space</center></h1>
+        
+        
+        <p>Suppose we have a spring that can stretch or compress an object attached to the end. Let \(M\) be the mass of the object, measured in kilograms. Hooke's law states that the force exerted by the spring on this object is proportional to the displacement of the object from equilibrium. Equilibrium here is when the spring is "at rest", neither stretched nor compressed. </p>
+        
+        
+        <p>The graph below shows the displacement from equilibrium (marked on the horizontal axis) of a mass attached to a horizontal spring. You can move the slider to view the results of compressing and/or stretching the spring.</p>
+        
+               <style>
+                   
+                   .rangeslider{
+                       width: 50%;
+                   }
+               
+               .myslider {
+                   -webkit-appearance: none;
+                   background: #b2d8d8  ;
+                   width: 50%;
+                   height: 5px;
+                   opacity: 2;
+               }
+               
+               
+               .myslider::-webkit-slider-thumb {
+                   -webkit-appearance: none;
+                   cursor: pointer;
+                   background: #34495E  ;
+                   width: 5%;
+                   height: 20px;
+               }
+               
+               
+               .myslider:hover {
+                   opacity: 1;
+               }
+               
+                   </style>
+
+               
+               <div class="rangeslider">
+                   <input type="range" min="1" max="24" value="10" step="1"
+                       class="myslider" id="sliderRange">
+                      <p><span id="value" style="color:white"></span></p>
+               </div>
+               
+               <img src = "static/hookeslaw_10.png" id="img"></img>
+               <script>
+                var rangeslider = document.getElementById("sliderRange");
+                var output = document.getElementById("value");
+                
+                output.innerHTML = rangeslider.value;
+                
+                rangeslider.oninput = function() {
+                output.innerHTML = this.value;
+                
+                var img = document.getElementById("img");
+                img.setAttribute("src", "static/hookeslaw_" + this.value + ".png");
+                }
+                
+                
+                </script>
+        
+        <p>Observe that at equilibrium, the displacement is 0. When the spring is compressed (i.e., the mass is to the left of the equilibrium position), displacement is negative. When the spring is stretched (i.e., the mass is to the right of the equilibrium position), the displacement is positive.</p>
+        
+        
+         <p>Using the method below, once could use a spring to simultaneously determine the mass of an object in outer space and the spring constant. In outer space, it is important for astronauts to know their mass, an indicator of health. While not exactly the method outlined below, astronauts do use a machine that is based on springs to measure their mass in space. See <a href="https://www.airspacemag.com/daily-planet/how-do-astronauts-weigh-themselves-space-180953884/" target="_blank">here for details</a>.  </p>
+        
+        </div>
+        
+        <div>
+        
+        <h2>Forces on the mass</h2>
+        
+        <p>Let's consider the forces acting on the mass.</p>
+        <h3>Newton's second law of motion</h3>
+        
+        <p>Newton's second law of motion states that the total force acting on an object is equal to the mass of the object times its acceleration:</p>
+    
+        \[F_{total} = 𝑚⋅𝑎\]
+        
+        <h3>Spring force (Hooke's law)</h3>
+        
+        <p>Hooke's law states that the force exerted by the spring is proportional to the displacement of the object from equilibrium. If we denote displacement from equilibrium by \(x\),</p>
+        \[F_{𝑠𝑝𝑟𝑖𝑛𝑔}=𝑘⋅𝑥,\]
+        <p>where \(k\) is a constant. Each individual spring has a single value of \(k\) that depends on multiple factors, including the length of the spring, the number of coils, and the material that the spring is made out of.</p>
+        
+        
+        <p>Let's denote any additional forces on the mass by \(F_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}\). Thus,
+        \[𝐹_{𝑡𝑜𝑡𝑎𝑙}=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}+𝐹_{𝑠𝑝𝑟𝑖𝑛𝑔}=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}+𝑘⋅𝑥=𝑀⋅𝑎\]
+        <p>Subtracting \(𝐹_{𝑠𝑝𝑟𝑖𝑛𝑔}\) from both sides, we have</p>
+        \[𝑀⋅𝑎−𝑘⋅𝑥=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}\]
+        
+        
+        <p>This equation must hold for all times that the mass is attached to the spring. 𝑀 and 𝑘 are constants. Constants in a a system are referred to as parameters of this spring-mass system. \(𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}\), \(𝑎\), and \(𝑥\) are actually functions of time, which may or may not be constant. Recall also that acceleration is the second derivative of displacement. So, the equation of this spring-mass system is
+        \[𝑀⋅𝑥''(𝑡)+𝑘⋅𝑥(𝑡)=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\tag{1}\]
+        
+        </div>
+        
+        
+        <div>
+        <h2>Activity: solving for the parameters \(𝑀\) and \(𝑘\).</h2>
+        
+        <p><b>Directions:</b> Complete each question and write down your answer on a piece of paper to hand in. Answers to some questions will be provided after you click the "Check Answer" button. You should write down your answers before checking them.</p>
+        
+            <p>How could one determine the values of the parameters 𝑀 and 𝑘 for a given spring?
+            If \(𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\) is known and \(𝑥(𝑡)\) can be measured, we can then solve for \(𝑀\) and \(𝑘\).</p>
+            <div>
+            <p>1. We have one equation and two unknowns (\(𝑀\) and \(𝑘\)). How many equations do we need to solve for \(𝑀\) and \(𝑘\)?</p>
+            
+            <br>
+            <button type="button" onclick="document.getElementById('Activity1Answer1').style.display='block'">Check Answer</button> <br><br></div>
+            <div id="Activity1Answer1" style="display:none">
+            <p><b>Answer:</b> 2 equations are needed to solve a system of equations with 2 unknowns.</p>
+             2. Spend a few minutes thinking how to obtain a second equation for this system. Note that the second equation cannot be a multiple of the first.<br></p>
+            <br>
+            <button type="button" onclick="document.getElementById('Activity1Answer2a').style.display='block'">Check Answer</button> <br><br></div>
+        <div id="Activity1Answer2a" style="display:none">
+            <p><b>Answer:</b> We can differentiate the first equation with respect to \(t\). Do this and write down the second equation.</p>
+            <button type="button" onclick="document.getElementById('Activity1Answer2b').style.display='block'">Check Answer</button> <br><br></div>
+        <div id="Activity1Answer2b" style="display:none">
+            3. A second equation can be obtained by differentiating both sides of equation (1)
+             with respect to \(t\). We now have a system of two equations:
+             \[𝑀⋅𝑥''(𝑡)+𝑘⋅𝑥(𝑡)=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\]
+             \[𝑀⋅𝑥'''(𝑡)+𝑘⋅𝑥'(𝑡)=𝐹'_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\]
+             Recall that we are assuming \(x(t)\) and \(F(t)\) can be measured, so they are known. The unknowns are the parameters, \(M\) and \(k\). Solve this system of equations for \(M\) and \(k\).
+             <br>
+            <button type="button" onclick="document.getElementById('Activity1Answer3').style.display='block'">Check Answer</button> <br><br></div>
+        <div id="Activity1Answer3" style="display:none">
+            <p><b>Answer:</b>
+            \[𝑀=\frac{𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\cdot x'(t) - F'_{external}(t)\cdot x(t)}{x''(t)\cdot x'(t)-x'''(t)\cdot x(t)}\]
+            \[k=\frac{x''(t)\cdot F'_{external}(t) + x'''(t)\cdot F_{external}(t)}{x''(t)\cdot x'(t)-x'''(t)\cdot x(t)}\]</p>
+            <p>This result is remarkable. Why? Right down your answer. Hint: consider the left hand sides and right hand sides.</p>
+            <br>
+            <button type="button" onclick="document.getElementById('Activity1Answer3b').style.display='block'">Check Answer</button> <br><br></div>
+        <div id="Activity1Answer3b" style="display:none">
+            <p><b>Answer:</b> the left hand sides are constant while the right hand sides are functions of time. </p>
+            
+             
+             4. Assume a constant force of 1 Newton is applied to a spring-mass system. Suppose the displacement from equilibrium is given by \(x(t) = \sin{t} + \cos{t} + 1,\) where time is in seconds. Find \(M\) and \(k\) for this spring mass system. Work out the answer and show all of your work.
+             
+             5. Now assume a constant force of 1 Newton si applied to a spring-mass sytem. Suppose the displacement from equibirium is given by \(t^2 + 3*t + 1\), where time is in seconds.
+              Find \(M\) and \(k\) for this spring mass system. You will see that your result cannot be valid. Think about why this happened and write down your thoughts.
+             <br>
+            <button type="button" onclick="document.getElementById('Activity2').style.display='block'">Continue to extension</button> <br><br></div>
+             </div>
+        
+        
+        
+        
+            <div id="Activity2" style="display:none">
+             
+             <h2>Extension: incorporating friction and air resistance</h2>
+             <p>Equation (1) works in an idealized setting where there is not friction (in the case of a horizontal spring) or air resistance (in the case of a vertical spring). If friction or air resistance are present, they are proportional to the velocity of the mass. Recall that velocity is given by \(x'(t)\), the first derivative of displacement. Then the equation becomes:
+             \[𝑀⋅𝑥''(𝑡)+c⋅x'(t)+𝑘⋅𝑥(𝑡)=𝐹_{𝑒𝑥𝑡𝑒𝑟𝑛𝑎𝑙}(𝑡)\tag{2}\]
+             
+             1. How many equations are needed to solve for the parameters \(M\),\(c\), and \(k\) in a spring mass system with damping?<br>
+             2. Think about how you will come up with two additional equations to solve for the parameters. Write down the three equations.<br>
+             3. Solve this system of equations for \(M\),\(c\), and \(k\).<br>
+
+             </div>
+     
+     
+        
+    </body>
+</html>
+
